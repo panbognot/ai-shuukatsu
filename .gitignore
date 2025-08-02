@@ -1,0 +1,63 @@
+# -----------------------------------------------------------------------------
+# Operating System & IDE Specific Files
+# -----------------------------------------------------------------------------
+.DS_Store          # macOS specific file for folder customization
+Thumbs.db          # Windows specific file for image thumbnails
+.vscode/           # Visual Studio Code settings (can be project-specific)
+.idea/             # IntelliJ IDEA specific files
+*.swp              # Vim swap files
+*~                 # Emacs backup files
+
+# -----------------------------------------------------------------------------
+# Build Artifacts & Dependencies
+# -----------------------------------------------------------------------------
+build/             # Common build output directory
+dist/              # Common distribution output directory
+*.log              # Log files
+*.bak              # Backup files
+*.tmp              # Temporary files
+node_modules/      # Node.js dependencies
+vendor/            # PHP Composer dependencies, Ruby Bundler, etc.
+__pycache__/       # Python compiled bytecode
+*.pyc              # Python compiled files
+.venv/             # Python virtual environments
+target/            # Java Maven/Gradle build output
+bin/               # Compiled binaries
+
+# -----------------------------------------------------------------------------
+# ** IMPORTANT: Sensitive Information (Passwords, Keys, Configs) **
+# -----------------------------------------------------------------------------
+# NEVER commit these files!
+# If these files are already in your repo, you MUST remove them from history
+# using 'git rm --cached' and/or 'git filter-repo'.
+
+# Generic sensitive file patterns
+*.env              # Environment variable files (e.g., .env, .env.local)
+.env.* # More specific .env patterns
+config.ini         # Common config file that might contain secrets
+secrets.json       # JSON file likely containing secrets
+keys.pem           # Private key files
+*.key              # Generic key files (e.g., .ssh/id_rsa.key)
+*.pem              # Certificate/key files
+*.crt              # Certificate files (often sensitive with keys)
+*.pfx              # Personal Information Exchange format (often contains keys)
+*.jks              # Java KeyStore files
+
+# Specific common sensitive file names (add more if your project uses them)
+database.yml       # Ruby on Rails database config (might have credentials)
+settings.py        # Django settings (might have sensitive info, though often loaded from .env)
+application.properties # Spring Boot (might have credentials)
+appsettings.json   # .NET (might have credentials)
+credentials.json   # Google Cloud / AWS credentials
+serviceAccountKey.json # Firebase/Google Cloud service account keys
+.htpasswd          # Apache HTTP Server password file
+id_rsa             # SSH private key
+id_rsa.pub         # SSH public key (less sensitive, but often grouped)
+pgpass             # PostgreSQL password file
+
+# -----------------------------------------------------------------------------
+# Miscellaneous
+# -----------------------------------------------------------------------------
+.DS_Store
+*.sublime-project  # Sublime Text project files
+*.sublime-workspace # Sublime Text workspace files
