@@ -1,8 +1,10 @@
 import os
+import io
 from pathlib import Path
 from docx import Document
 from docx.opc.exceptions import OpcError
 from docx.shared import Inches
+import fitz
 
 def save_df_to_excel(file_name, df):
     """
@@ -64,6 +66,43 @@ def extract_text_from_docx(file_path):
         return None
     except OpcError:
         print(f"Error: Could not open '{file_path}'. The file may be corrupt or not a valid .docx file.")
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return None
+    
+def extract_text_from_pdf(file_path):
+    """
+    Extracls all text content from a PDF file.
+    Args:
+        file_path (str): The full path to the PDF file.
+    Returns:
+        str: The extracted text content, or None if an error occurs.
+    """
+    # Check if the file exists
+    if not os.path.exists(file_path):
+        print(f"Error: The file '{file_path}' does not exist.")
+        return None
+    
+    # Check if the file is a PDF
+    if not file_path.lower().endswith('.pdf'):
+        print(f"Error: The file '{file_path}' is not a PDF file.")
+        return None
+    
+    try:
+        # Open the PDF file
+        with fitz.open(file_path) as doc:
+            full_text = []
+            # Iterate through each page and extract text
+            for page in doc:
+                text = page.get_text() # type: ignore
+                full_text.append(text)
+
+            # Join the text from all pages into a single string
+            return "\n".join(full_text)
+        
+    except fitz.FileDataError:
+        print(f"Error: Could not open '{file_path}. The file may be corrupt or not a valid PDF.")
         return None
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
