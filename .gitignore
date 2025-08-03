@@ -28,6 +28,7 @@ bin/               # Compiled binaries
 # User-Specific Files
 # -----------------------------------------------------------------------------
 user-docs/*
+data/
 
 # -----------------------------------------------------------------------------
 # ** IMPORTANT: Sensitive Information (Passwords, Keys, Configs) **
