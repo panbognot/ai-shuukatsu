@@ -4,50 +4,7 @@ from docx import Document
 from docx.opc.exceptions import OpcError
 from docx.shared import Inches
 
-# This is designed ONLY for .docx files. The .doc format is not supported.
-def extract_text_from_docx(file_path):
-    """
-    Extract text from a .docx file.
-    Args:
-        file_path (str): The full path to the .docx file.
-    Returns:
-        str: The extracted text content, or None if an error occurs.
-    """
-    # Check if the file exists
-    if not os.path.exists(file_path):
-        print(f"Error: The file '{file_path}' does not exist.")
-        return None
-    
-    # Note: delete this check later for a higher version
-    # Check if the file is a .docx file
-    if not file_path.lower().endswith('.docx'):
-        print(f"Error: The file '{file_path}' is not a .docx file. This script only supports .docx files.")
-        print("Please convert any .doc files to .docx before running.")
-        return None
-    
-    try:
-        # Open the .docx file
-        doc = Document(file_path)
-
-        # Initialize a list to hold the text from each paragraph
-        full_text = []
-
-        # Iterate through all paragraphs in the document and append their text
-        for paragraph in doc.paragraphs:
-            full_text.append(paragraph.text)
-
-        # Join the list of strings into a single string with newlines
-        return '\n'.join(full_text)
-    
-    except FileNotFoundError:
-        print(f"Error: The file '{file_path}' was not found.")
-        return None
-    except OpcError:
-        print(f"Error: Could not open '{file_path}'. The file may be corrupt or not a valid .docx file.")
-        return None
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        return None
+from src.utils.helpers import extract_text_from_docx
     
 # Replace later with a resume document creation function
 def create_demo_resume_docx(filename = 'demo_resume.docx'):
@@ -90,4 +47,15 @@ def create_demo_resume_docx(filename = 'demo_resume.docx'):
 
 if __name__ == "__main__":
     # Create a demo resume document
-    create_demo_resume_docx()
+    # create_demo_resume_docx()
+
+    # Example usage of the extract_text_from_docx function
+    file_to_extract = "user-docs/2025-08 IT Resume.docx"
+
+    print(f"Extracting text from: {file_to_extract}...")
+    resume_text = extract_text_from_docx(file_to_extract)
+
+    if resume_text:
+        print("\n--- Extracted Resume Text ---")
+        print(resume_text)
+        print("\n--- End of Extracted Text ---")
