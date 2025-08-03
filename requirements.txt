@@ -24,6 +24,7 @@ httpx==0.28.1
 idna==3.10
 ipython==8.18.1
 jedi==0.19.2
+lxml==6.0.0
 matplotlib-inline==0.1.7
 multidict==6.6.3
 numpy==2.0.2
@@ -43,6 +44,7 @@ pydantic==2.11.5
 pydantic_core==2.33.2
 Pygments==2.19.2
 python-dateutil==2.9.0.post0
+python-docx==1.2.0
 python-dotenv==1.1.1
 pytz==2025.2
 regex==2025.7.34
