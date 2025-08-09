@@ -217,7 +217,7 @@ def create_custom_self_introduction(profile_filepath,
         # Save the document
         folder = "data/custom-intro"
         fp = Path(job_post_filename)
-        new_file_path = f"{folder}/{fp.name}"
+        new_file_path = f"{folder}/{fp.name.replace('.txt', '_self_intro.docx')}"
 
         new_doc = Document()
         new_doc.add_paragraph(self_intro) # type: ignore
