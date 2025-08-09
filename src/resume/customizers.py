@@ -6,8 +6,8 @@ import os
 # for resumes and job applications. Saving the generated content
 # to files is handled in the generators.py script.
 
-def customize_self_introduction(applicant_profile: str, company_website: str, 
-                                job_post: str):
+def customize_self_introduction(applicant_profile, company_website, 
+                                job_post):
     """
     Generate a self-introduction for a job application based on the applicant's profile,
     the company's website, and the job post.

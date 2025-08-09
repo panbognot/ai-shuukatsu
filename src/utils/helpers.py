@@ -37,6 +37,23 @@ def save_df_to_excel(file_name, df):
     # Save DataFrame to Excel
     df.to_excel(file_path, index=False)
 
+def extract_text_from_txt(file_path):
+    """
+    Extracts and returns the content of a .txt file.
+    """
+    try:
+        # The 'with' statement ensures the file is automatically closed.
+        # 'r' is for read mode, which is the default.
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            return content
+    except FileNotFoundError:
+        print(f"Error: The file '{file_path}' was not found.")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
 # This is designed ONLY for .docx files. The .doc format is not supported.
 def extract_text_from_docx(file_path):
     """

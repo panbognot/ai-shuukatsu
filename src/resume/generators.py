@@ -2,10 +2,12 @@ import pandas as pd
 import os
 import openpyxl
 
+from pathlib import Path
 from docx import Document
 from openpyxl import Workbook
 
 from src.resume.customizers import customize_self_introduction
+from src.utils.helpers import extract_text_from_docx, extract_text_from_txt
 
 # Replace later with a resume document creation function
 def create_demo_resume_docx(filename = 'demo_resume.docx'):
@@ -136,7 +138,7 @@ def create_demo_rirekisho_xlsx(filename='demo_rirekisho.xlsx'):
         print(f"Error creating demo rirekisho: {e}")
         return False
     
-def create_custom_self_introduction():
+def create_demo_custom_self_introduction():
     profile = """
     Name: Rad Navs
     Professional Summary: 
@@ -197,3 +199,31 @@ def create_custom_self_introduction():
     
     print("\n--- Created Custom Self-Intro Text ---")
     print(self_intro)
+
+def create_custom_self_introduction(profile_filepath, 
+                                    website,
+                                    job_post_filename):
+    
+    profile = extract_text_from_docx(profile_filepath)
+    job_post = extract_text_from_txt(job_post_filename)
+
+    self_intro = customize_self_introduction(
+        applicant_profile=profile,
+        company_website=website,
+        job_post=job_post
+    )
+    
+    try:
+        # Save the document
+        folder = "data/custom-intro"
+        fp = Path(job_post_filename)
+        new_file_path = f"{folder}/{fp.name}"
+
+        new_doc = Document()
+        new_doc.add_paragraph(self_intro) # type: ignore
+
+        new_doc.save(new_file_path)
+        print(f"Custom Self-Intro created at: {new_file_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
