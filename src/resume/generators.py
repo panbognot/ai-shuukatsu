@@ -5,6 +5,8 @@ import openpyxl
 from docx import Document
 from openpyxl import Workbook
 
+from src.resume.customizers import customize_self_introduction
+
 # Replace later with a resume document creation function
 def create_demo_resume_docx(filename = 'demo_resume.docx'):
     """
@@ -133,3 +135,65 @@ def create_demo_rirekisho_xlsx(filename='demo_rirekisho.xlsx'):
     except Exception as e:
         print(f"Error creating demo rirekisho: {e}")
         return False
+    
+def create_custom_self_introduction():
+    profile = """
+    Name: Rad Navs
+    Professional Summary: 
+    Bilingual (English-Japanese) IT Manager and Senior Software Developer with 10+ 
+    years of experience in software development, team leadership, and strategic IT 
+    planning. Proficient in Python, PHP, Angular, and AWS, with a proven track record of 
+    delivering scalable solutions for multinational teams. JLPT N2 certified with a strong 
+    interest in Japanese culture and technology. I've done the whole Software Development 
+    Life Cycle from Requirements definition, code development, QA testing and finally 
+    delivering to clients.
+
+    Technical Skills: 
+    Programming Languages: Python, PHP, TypeScript, JavaScript, Node.js, C/C++ 
+    AI / LLM: ChatGPT, Google Gemini, Perplexity
+    Frameworks: Angular, Django, CodeIgniter, Bootstrap
+    Cloud Services: AWS (EC2, RDS, S3, Lambda, DynamoDB), Google (GCE, GCF, BigQuery)
+    Databases: MySQL, MariaDB, PostgreSQL, NoSQL
+    Tools: Git, Jira, Trello, Selenium, SVN, Mantis
+    Other: Agile Methodology, Scrum Master, UNIX, Shell Scripting, Embedded Systems
+    """
+    website = "https://www.f-keisho.co.jp/"
+    job_post = """
+    【京都】システムエンジニア
+    仕事内容
+    【職務概要】
+    大手から中小企業に至るまで、食品業界の幅広いお客様への導入実績を持っている同社にて、製造業における生産管理の手法を基盤とした食品業界向け生産管理システムの自社パッケージ開発を実施いただきます。
+    ※開発言語…C＃、Java、VB6など
+
+    【職務詳細】
+    お客様との直接契約による案件がほとんどです。全て自社開発となります。同社は営業職を抱えておらず、全てお客様からの紹介により案件化されます。ご提案フェーズでは、社長とエンジニア自らがプレゼンを行い、プレ段階から関与する事ができます。自ら受注したプロジェクトの要件定義段階から下流工程まで、多岐にわたる業務に携わっていただきます。食品業界というニッチな領域に特化し、裁量と自立性のある文化が根付いています。
+
+    会社の特徴
+
+    同社は、製造業・食品スーパーのお客様に寄り添い、現場を第一に考え、お客様の現場のニーズに誠心誠意応えています。それらの結果、豊富な経験や貴重なノウハウを得る事ができました。また、経験やノウハウを蓄えるだけでなく、お客様の更なる発展につなげるために、絶えずチャレンジを続けるプロフェッショナル集団でありたいと考えています。これからもお客様とのコミュニケーションを大切にし、課題に対して、求められている以上の提案、活動を展開しています。
+
+    ★システム導入と並行して業務改善提案を行います★
+    同社では、システム導入と並行して、根本的な業務改善にも取り組みます。システムを導入すればあらゆる課題が解決するわけではありません。システムを利用する「人」と「物」の関わり方そのものの改善を目指して、お客様と二人三脚で最適な方法を考えます。システム導入と同時に業務全体を見直しすることで、システム化のメリットを引き出します。
+
+
+    募集要項
+
+    応募条件スキル	【必須】
+    ・オブジェクト指向言語（C＃、Java、VB6）の開発実務経験1年以上
+
+    ■安定して働ける環境
+    同社は有給消化率100%を誇り、残業時間も短く、エンジニアとしてスキルを伸ばせる環境というだけでなく、安心し取り組める環境です。
+
+    下記のような方は歓迎！
+    ・本業種での業務経験
+    応募条件ソフト面	・セルフスターターな方
+    """
+
+    self_intro = customize_self_introduction(
+        applicant_profile=profile,
+        company_website=website,
+        job_post=job_post
+    )
+    
+    print("\n--- Created Custom Self-Intro Text ---")
+    print(self_intro)
