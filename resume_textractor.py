@@ -2,6 +2,7 @@ import os
 from docx import Document
 
 from src.resume.generators import create_demo_resume_docx, create_demo_rirekisho_xlsx
+from src.resume.rirekisho import extract_data_from_rirekisho
 from src.utils.helpers import extract_text_from_docx, extract_text_from_pdf
 
 if __name__ == "__main__":
@@ -20,3 +21,15 @@ if __name__ == "__main__":
         print("\n--- Extracted Resume Text ---")
         print(resume_text)
         print("\n--- End of Extracted Text ---")
+
+    # Example usage of the extract_data_from_rirekisho function
+    rirekisho_file = "user-docs/2025-07 IT Rirekisho.xlsx"
+
+    print(f"Extracting data from: {rirekisho_file}...")
+    rirekisho_data = extract_data_from_rirekisho(rirekisho_file)
+
+    if rirekisho_data:
+        print("\n--- Extracted Rirekisho Data ---")
+        for key, value in rirekisho_data.items():
+            print(f"{key}: {value}")
+        print("\n--- End of Extracted Data ---")

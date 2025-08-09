@@ -6,6 +6,17 @@ from docx.opc.exceptions import OpcError
 from docx.shared import Inches
 import fitz
 
+def find_cell_by_value(data, target_value):
+    """
+    Finds the row and column of the first cell that contains a specific value.
+    Returns a tuple (row_index, col_index) or (None, None) if not found.
+    """
+    for row_index, row_data in enumerate(data):
+        for col_index, cell_value in enumerate(row_data):
+            if isinstance(cell_value, str) and target_value in cell_value:
+                return row_index, col_index
+    return None, None
+
 def save_df_to_excel(file_name, df):
     """
     Save the DataFrame of companies to an Excel file.
