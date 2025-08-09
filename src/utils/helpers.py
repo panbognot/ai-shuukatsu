@@ -118,3 +118,22 @@ def extract_text_from_pdf(file_path):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
         return None
+    
+# Basic input validation for prompts
+def is_input_safe(prompt: str) -> bool:
+    """
+    Checks the user's input for keywords commonly associated with promp injection.
+    Returns True if the input is deemed safe, False otherwise.
+    """
+    # A simple list of keywords to flag (expand as needed)
+    malicious_keywords = ["ignore", "override", "system", "delete", "code", "run this", "execute"]
+    
+    # Normalize the input to lowercase for case-insensitive checking.
+    normalized_prompt = prompt.lower()
+
+    for keyword in malicious_keywords:
+        if keyword in normalized_prompt:
+            print(f"Warning: The input contains a potentially unsafe keyword: '{keyword}'")
+            return False
+        
+    return True
