@@ -200,7 +200,31 @@ def create_demo_custom_self_introduction():
     print("\n--- Created Custom Self-Intro Text ---")
     print(self_intro)
 
-def create_custom_self_introduction(profile_filepath, 
+def create_custom_self_introduction_from_text(profile, 
+                                              company_name, 
+                                              job_post, 
+                                              website=None):
+    self_intro = customize_self_introduction(
+        applicant_profile=profile,
+        job_post=job_post,
+        company_website=website
+    )
+
+    try:
+        # Save the document
+        folder = "data/custom-intro"
+        new_file_path = f"{folder}/{company_name}_self_intro.docx"
+
+        new_doc = Document()
+        new_doc.add_paragraph(self_intro)  # type: ignore
+
+        new_doc.save(new_file_path)
+        print(f"Custom Self-Intro created at: {new_file_path}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+def create_custom_self_introduction_from_files(profile_filepath, 
                                     job_post_filename,
                                     website=None):
     
@@ -209,8 +233,8 @@ def create_custom_self_introduction(profile_filepath,
 
     self_intro = customize_self_introduction(
         applicant_profile=profile,
-        company_website=website,
-        job_post=job_post
+        job_post=job_post,
+        company_website=website
     )
     
     try:

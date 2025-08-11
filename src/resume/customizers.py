@@ -28,7 +28,7 @@ def customize_self_introduction(applicant_profile, job_post, company_website=Non
     application process. You know the difference between "written" and "spoken"
     Japanese.
     You MUST adhere to the following rules at all times:
-    1. Do NOT fabricate skills that are NOT included in applicant's profile. 
+    1. Do NOT fabricate skills that are NOT included in the applicant's profile. 
         Be TRUTHFUL so that the applicant can answer questions related to the 
         "self-introduction (自己PR)". Use similar or related skills if necessary
         instead of fabricating new ones.
