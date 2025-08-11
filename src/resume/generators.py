@@ -201,8 +201,8 @@ def create_demo_custom_self_introduction():
     print(self_intro)
 
 def create_custom_self_introduction(profile_filepath, 
-                                    website,
-                                    job_post_filename):
+                                    job_post_filename,
+                                    website=None):
     
     profile = extract_text_from_docx(profile_filepath)
     job_post = extract_text_from_txt(job_post_filename)

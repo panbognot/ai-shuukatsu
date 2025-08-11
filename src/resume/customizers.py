@@ -6,8 +6,7 @@ import os
 # for resumes and job applications. Saving the generated content
 # to files is handled in the generators.py script.
 
-def customize_self_introduction(applicant_profile, company_website, 
-                                job_post):
+def customize_self_introduction(applicant_profile, job_post, company_website=None):
     """
     Generate a self-introduction for a job application based on the applicant's profile,
     the company's website, and the job post.
@@ -24,6 +23,10 @@ def customize_self_introduction(applicant_profile, company_website,
     # This describes the system's role and rules to follow
     SYSTEM_PROMPT = """
     You are an expert "self-introduction (自己PR)" writer in Japan's IT industry. 
+    You are aware of the latest trends and requirements in the job market.
+    You are aware of the cultural nuances and expectations in Japan's job 
+    application process. You know the difference between "written" and "spoken"
+    Japanese.
     You MUST adhere to the following rules at all times:
     1. Do NOT fabricate skills that are NOT included in applicant's profile. 
         Be TRUTHFUL so that the applicant can answer questions related to the 
@@ -41,13 +44,14 @@ def customize_self_introduction(applicant_profile, company_website,
     # User prompt to generate the custom self-introduction
     USER_PROMPT = f"""
     Create a concise and captivating "self-introduction (自己PR)" that will be
-    submitted to different online job boards. Write it in both Japanese and English. 
+    submitted to different online job boards. Use the 80/20 rule when composing
+    the "self-introduction (自己PR)". Write it in both Japanese and English. 
     Use standard formal business writing style for the Japanese text. 
     Customize the introduction messages based on the following data:
     
     1. Applicant Profile: {applicant_profile}
-    2. Company Website: {company_website}
-    3. Job Post: {job_post}
+    2. Job Post: {job_post}
+    3. Company Website (optional): {company_website}
     """
 
     gemini_api_key = os.getenv("GOOGLE_GEMINI_API_KEY")
@@ -58,7 +62,7 @@ def customize_self_introduction(applicant_profile, company_website,
             system_instruction=SYSTEM_PROMPT,
             response_mime_type="text/plain",
             temperature=0.5,
-            # max_output_tokens=5000
+            max_output_tokens=1000
         ),
         contents=[USER_PROMPT],
     )

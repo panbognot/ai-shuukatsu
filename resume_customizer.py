@@ -9,6 +9,6 @@ if __name__ == "__main__":
     # create_demo_custom_self_introduction()
     create_custom_self_introduction(
         profile_filepath="user-docs/2025-08 IT Resume.docx",
-        website="https://www.medley.jp/",
-        job_post_filename="user-docs/job-posts/job.txt"
+        job_post_filename="user-docs/job-posts/job.txt",
+        website="https://www.medley.jp/"
     )
