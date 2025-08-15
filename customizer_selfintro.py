@@ -21,8 +21,8 @@ if __name__ == "__main__":
     extracted_profile = extract_text_from_docx(applicant_profile)
 
     # Create custom self-introductions for multiple job posts using an excel file
-    # job_posts_file = "user-docs/job-posts/wp-leads.xlsx"
-    job_posts_file = "user-docs/job-posts/japan-dev-leads.xlsx"
+    job_posts_file = "user-docs/job-posts/wp-leads.xlsx"
+    # job_posts_file = "user-docs/job-posts/japan-dev-leads.xlsx"
 
     try:
         # The header=0 argument specifies that the first row is the header.
